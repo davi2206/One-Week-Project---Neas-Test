@@ -1,0 +1,62 @@
+﻿<Window x:Class="Business_Manager_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Business_Manager_UI"
+        mc:Ignorable="d"
+        Title="Neas Business Management" MinHeight="600" Width="230" Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel x:Name="Menubar" Orientation="Horizontal" Height="35" VerticalAlignment="Top" Margin="5">
+            <Button x:Name="Btn_Opdater" Content="Opdater" Width="200" Click="Opdater_Button_Click"/>
+        </StackPanel>
+
+        <StackPanel x:Name="DistrictList" Orientation="Vertical" VerticalAlignment="Top" Margin="5, 45, 5, 5">
+            <DataGrid x:Name="dataGrid_Districts" 
+                      HorizontalAlignment="Left" VerticalAlignment="Top"
+                      Height="150" Width="200" 
+                      SelectionChanged="dataGrid_Districts_SelectionChanged" 
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      IsReadOnly="True" 
+                      AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nr" Binding="{Binding Nr}" />
+                    <DataGridTextColumn Header="Area" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Manager" Binding="{Binding Manager.Name}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel x:Name="DistrictDetails" Orientation="Vertical" VerticalAlignment="Top" Margin="5, 200, 5, 5">
+            <DataGrid x:Name="dataGrid_DistrictStores" 
+                      HorizontalAlignment="Left" VerticalAlignment="Top"
+                      Height="150" Width="200" 
+                      IsReadOnly="True" 
+                      AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Store Name" Binding="{Binding Name}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid x:Name="dataGrid_DistrictSalesmen" 
+                      HorizontalAlignment="Left" VerticalAlignment="Top" 
+                      Height="150" Width="200" 
+                      Margin="0, 5"
+                      IsReadOnly="True" 
+                      AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="AddSalesman" Content="Tilføj sælger" Width="95" Margin="0, 5, 5, 5" HorizontalAlignment="Left" Click="AddSalesman_Click" />
+                <Button x:Name="RemoveSalesman" Content="Fjern sælger" Width="95" Margin="5, 5, 5, 5" HorizontalAlignment="Left" Click="RemoveSalesman_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

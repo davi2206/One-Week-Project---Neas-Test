@@ -1,0 +1,4 @@
+c:\users\david\documents\visual studio 2015\Projects\Neas Prøve\Data Access\bin\Debug\Data Access.dll
+c:\users\david\documents\visual studio 2015\Projects\Neas Prøve\Data Access\bin\Debug\Data Access.pdb
+c:\users\david\documents\visual studio 2015\Projects\Neas Prøve\Data Access\obj\Debug\Data Access.dll
+c:\users\david\documents\visual studio 2015\Projects\Neas Prøve\Data Access\obj\Debug\Data Access.pdb
