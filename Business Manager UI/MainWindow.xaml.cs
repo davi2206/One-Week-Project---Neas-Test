@@ -55,6 +55,18 @@ namespace Business_Manager_UI
 
         private void AddSalesman_Click(object sender, RoutedEventArgs e)
         {
+            //View al salesmen available
+            AddOrRemoveSalesman a = new AddOrRemoveSalesman();
+            a.Show();
+
+            List<Salesman> salesmen = new List<Salesman>();
+            string one = "Get all the available salesmen: SELECT Salesmen.Id, Salesmen.Name FROM Salesmen INNER JOIN DistrictSalesman ON Salesmen.Id=Salesman_Id AND District_Id!='5' AND Manager='0';";
+            string two = "Set new DistrictSalesman: INSERT INTO DistrictSalesman VALUES (<salesmanId>, <districtId>, <manager>);";
+            string three = "If manager: UPDATE Districts SET Manager=<new manager id> WHERE Nr=<districtNr>" + 
+                "UPDATE DistrictSalesman SET Manager=0 WHERE District_Id=<curent district> AND Salesman_Id!=<New manager id>";
+
+            //Do all above in one method. Implement atomicity. All has to work or rollback al!!
+
             string addSalesman = "Tilføj sælger: Dropdownliste med alle tilgængelige sælgere" +
                                     "\n - Ikke ansvarlige (Manager) fra andre distrikter" +
                                     "\n - Ikke sælgere allerede tilknyttet distrikt" +

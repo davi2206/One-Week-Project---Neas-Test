@@ -9,3 +9,16 @@ C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Test_Neas Proje
 C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Test_Neas Project\bin\Debug\Newtonsoft.Json.xml
 C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Test_Neas Project\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Test_Neas Project\obj\Debug\Test_Neas Project.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\Test_Neas Project.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\Test_Neas Project.pdb
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\Business Manager UI.exe
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\Newtonsoft.Json.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\Business Manager UI.pdb
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\Newtonsoft.Json.xml
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\obj\Debug\Test_Neas Project.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\obj\Debug\Test_Neas Project.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Test_Neas Project\obj\Debug\Test_Neas Project.pdb

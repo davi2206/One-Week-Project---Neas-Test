@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business_Manager_UI.Controllers
 {
-    class Controller
+    public class Controller
     {
         API_Controller apiCtrl;
 
@@ -45,7 +45,6 @@ namespace Business_Manager_UI.Controllers
                 string name = "";
 
                 List<Salesman> salesmen = new List<Salesman>();
-                int salesmenCount = 0;
                 Salesman manager = null;
 
                 try
@@ -56,58 +55,15 @@ namespace Business_Manager_UI.Controllers
                     string managerId = (string)json.SelectToken(string.Format("Districts[{0}].Manager.Id", i));
                     string managerName = (string)json.SelectToken(string.Format("Districts[{0}].Manager.Name", i));
                     manager = new Salesman(managerId, managerName);
-                    
-                    salesmenCount = json.SelectToken(string.Format("Districts[{0}].Salesmen", i)).Count();
                 }
                 catch (Exception e)
                 {
                     throw e;
                 }
 
-                for (int j = 0; j < salesmenCount; j++)
-                {
-                    try
-                    {
-                        string salesmanId = (string)json.SelectToken(string.Format("Districts[{0}].Salesmen[{1}].Id", i, j));
-                        string salesmanName = (string)json.SelectToken(string.Format("Districts[{0}].Salesmen[{1}].Name", i, j));
-                        Salesman s = new Salesman(salesmanId, salesmanName);
-                        salesmen.Add(s);
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
-                }
+                salesmen = GetSalesmenInDistrict(i, json);
 
-                List<Store> stores = new List<Store>();
-                int storeCount = 0;
-                try
-                {
-                    storeCount = json.SelectToken(string.Format("Districts[{0}].Stores", i)).Count();
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-
-                for (int k = 0; k <= storeCount; k++)
-                {
-                    string storeId = "";
-                    string storeName = "";
-                    Store s = null;
-
-                    try
-                    {
-                        storeId = (string)json.SelectToken(string.Format("Districts[{0}].Stores[{1}].Id", i, k));
-                        storeName = (string)json.SelectToken(string.Format("Districts[{0}].Stores[{1}].Name", i, k));
-                        s = new Store(storeId, storeName);
-                        stores.Add(s);
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
-                }
+                List<Store> stores = GetStoresInDistrict(i, json);
 
                 try
                 {
@@ -121,6 +77,77 @@ namespace Business_Manager_UI.Controllers
             }
 
             return districts;
+        }
+
+        /// <summary>
+        /// Get all the salesmen in the district
+        /// </summary>
+        /// <param name="i">Nr for district</param>
+        /// <param name="json">JObject with all data</param>
+        /// <returns>List of Salesman objects</returns>
+        private List<Salesman> GetSalesmenInDistrict(int i, JObject json)
+        {
+            int salesmenCount = json.SelectToken(string.Format("Districts[{0}].Salesmen", i)).Count();
+            List<Salesman> salesmen = new List<Salesman>();
+
+            for (int j = 0; j < salesmenCount; j++)
+            {
+                try
+                {
+                    string salesmanId = (string)json.SelectToken(string.Format("Districts[{0}].Salesmen[{1}].Id", i, j));
+                    string salesmanName = (string)json.SelectToken(string.Format("Districts[{0}].Salesmen[{1}].Name", i, j));
+                    Salesman s = new Salesman(salesmanId, salesmanName);
+                    salesmen.Add(s);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+
+            return salesmen;
+        }
+
+        /// <summary>
+        /// Gets all stores in District
+        /// </summary>
+        /// <param name="districtNr">Nr for district</param>
+        /// <param name="json">JObject with all data</param>
+        /// <returns>List of Store objects</returns>
+        private List<Store> GetStoresInDistrict(int districtNr, JObject json)
+        {
+            List<Store> stores = new List<Store>();
+
+            int storeCount = 0;
+            try
+            {
+                storeCount = json.SelectToken(string.Format("Districts[{0}].Stores", districtNr)).Count();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            for (int k = 0; k <= storeCount; k++)
+            {
+                string storeId = "";
+                string storeName = "";
+                Store s = null;
+
+                try
+                {
+                    storeId = (string)json.SelectToken(string.Format("Districts[{0}].Stores[{1}].Id", districtNr, k));
+                    storeName = (string)json.SelectToken(string.Format("Districts[{0}].Stores[{1}].Name", districtNr, k));
+                    s = new Store(storeId, storeName);
+                    stores.Add(s);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+
+            return stores;
         }
     }
 }

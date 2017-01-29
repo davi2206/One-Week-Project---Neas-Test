@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business_Manager_UI.Models
 {
-    class Salesman
+    public class Salesman
     {
         public Salesman(string id, string name)
         {
