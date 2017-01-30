@@ -54,8 +54,20 @@
             </DataGrid>
 
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="AddSalesman" Content="Tilføj sælger" Width="120" Margin="0, 5, 5, 5" HorizontalAlignment="Left" Click="AddSalesman_Click" />
-                <Button x:Name="RemoveSalesman" Content="Fjern sælger" Width="120" Margin="5, 5, 5, 5" HorizontalAlignment="Left" Click="RemoveSalesman_Click" />
+                <Button x:Name="AddSalesman" 
+                        Content="Tilføj sælger" 
+                        Width="120" 
+                        Margin="0, 5, 5, 5" 
+                        HorizontalAlignment="Left" 
+                        IsEnabled="False"
+                        Click="AddSalesman_Click" />
+                <Button x:Name="RemoveSalesman" 
+                        Content="Fjern sælger" 
+                        Width="120" 
+                        Margin="5, 5, 5, 5" 
+                        HorizontalAlignment="Left" 
+                        IsEnabled="False"
+                        Click="RemoveSalesman_Click" />
             </StackPanel>
         </StackPanel>
     </Grid>

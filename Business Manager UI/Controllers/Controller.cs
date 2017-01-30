@@ -17,6 +17,10 @@ namespace Business_Manager_UI.Controllers
             apiCtrl = new API_Controller();
         }
 
+        /// <summary>
+        /// Gets all districts
+        /// </summary>
+        /// <returns>List of District objects</returns>
         public List<District> GetAllDistricts()
         {
             List<District> districts = new List<District>();
@@ -148,6 +152,70 @@ namespace Business_Manager_UI.Controllers
             }
 
             return stores;
+        }
+
+        /// <summary>
+        /// Get available salesmen to add to district
+        /// </summary>
+        /// <param name="excludeDistrict">
+        /// Nr of district to add salesman to. 
+        /// Is excluded from available salesmen
+        /// </param>
+        /// <returns>List of Salesman objects</returns>
+        public List<Salesman> GetAvailableSalesmen(string excludeDistrict)
+        {
+            List<Salesman> salesmen = new List<Salesman>();
+            string salesmenAsString = "";
+            string stringObjects = "";
+            JObject json = null;
+            int salesmanCount = 0;
+
+            try
+            {
+                salesmenAsString = apiCtrl.GetAvailableSalesmen(excludeDistrict);
+
+                stringObjects = "{\"Salesmen\":" + salesmenAsString + "}";
+                json = JObject.Parse(stringObjects);
+
+                salesmanCount = json.SelectToken("Salesmen").Count();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            for (int i = 0; i < salesmanCount; i++)
+            {
+                string id = "";
+                string name = "";
+
+                try
+                {
+                    id = (string)json.SelectToken(string.Format("Salesmen[{0}].Id", i));
+                    name = (string)json.SelectToken(string.Format("Salesmen[{0}].Name", i));
+
+                    salesmen.Add(new Salesman(id, name));
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            
+            return salesmen;
+        }
+
+        /// <summary>
+        /// Update District with new salesman
+        /// </summary>
+        /// <param name="districtNr">District to update</param>
+        /// <param name="salesmanId">Salesman to add to district</param>
+        /// <param name="manager">Is the new salesman also the manager</param>
+        /// <returns>Result from POST method</returns>
+        public string UpdateDistrict(string districtNr, string salesmanId, bool? manager)
+        {
+            return apiCtrl.UpdateDistrict(districtNr, salesmanId, manager);
+            
         }
     }
 }

@@ -1,3 +1,12 @@
 [08:39 - Debug]: Loaded
 [08:40 - Debug]: Loaded
 [09:26 - Debug]: Loaded
+[09:26 - Error]: Objektreferencen er ikke indstillet til en forekomst af et objekt.
+[10:00 - Error]: Indekset lå uden for området. Det må ikke være negativt og skal være mindre end størrelsen på samlingen.
+Parameternavn: index
+[10:02 - Error]: Indekset lå uden for området. Det må ikke være negativt og skal være mindre end størrelsen på samlingen.
+Parameternavn: index
+[12:15 - Error]: Objektreferencen er ikke indstillet til en forekomst af et objekt.
+[12:15 - Error]: Objektreferencen er ikke indstillet til en forekomst af et objekt.
+[12:21 - Error]: Objektreferencen er ikke indstillet til en forekomst af et objekt.
+[12:23 - Error]:    ved Business_Manager_UI.MainWindow.dataGrid_Districts_SelectionChanged(Object sender, SelectionChangedEventArgs e) i C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\MainWindow.xaml.cs:linje 87

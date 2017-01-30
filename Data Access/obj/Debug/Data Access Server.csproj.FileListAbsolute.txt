@@ -7,3 +7,11 @@ C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Data Access\bin
 C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Data Access\bin\Debug\Newtonsoft.Json.xml
 C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Data Access\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Data Access\obj\Debug\Data Access Server.csprojResolveAssemblyReference.cache
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Data Access\bin\Debug\Data Access.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Data Access\bin\Debug\Data Access.pdb
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Data Access\bin\Debug\Newtonsoft.Json.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Data Access\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Data Access\bin\Debug\Newtonsoft.Json.xml
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Data Access\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Data Access\obj\Debug\Data Access.dll
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Data Access\obj\Debug\Data Access.pdb

@@ -36,9 +36,11 @@ namespace Business_Manager_UI
             }
             catch (Exception exc)
             {
-                LogEvent(exc.Message, 4);
+                LogEvent(exc.StackTrace, 4);
             }
         }
+
+        public string DistrictNr { get; set; }
 
         private void Opdater_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -49,34 +51,26 @@ namespace Business_Manager_UI
             }
             catch (Exception exc)
             {
-                LogEvent(exc.Message, 3);
+                LogEvent(exc.StackTrace, 3);
             }
         }
 
         private void AddSalesman_Click(object sender, RoutedEventArgs e)
         {
-            //View al salesmen available
-            AddOrRemoveSalesman a = new AddOrRemoveSalesman();
-            a.Show();
-
-            List<Salesman> salesmen = new List<Salesman>();
-            string one = "Get all the available salesmen: SELECT Salesmen.Id, Salesmen.Name FROM Salesmen INNER JOIN DistrictSalesman ON Salesmen.Id=Salesman_Id AND District_Id!='5' AND Manager='0';";
-            string two = "Set new DistrictSalesman: INSERT INTO DistrictSalesman VALUES (<salesmanId>, <districtId>, <manager>);";
-            string three = "If manager: UPDATE Districts SET Manager=<new manager id> WHERE Nr=<districtNr>" + 
-                "UPDATE DistrictSalesman SET Manager=0 WHERE District_Id=<curent district> AND Salesman_Id!=<New manager id>";
-
-            //Do all above in one method. Implement atomicity. All has to work or rollback al!!
-
-            string addSalesman = "Tilføj sælger: Dropdownliste med alle tilgængelige sælgere" +
-                                    "\n - Ikke ansvarlige (Manager) fra andre distrikter" +
-                                    "\n - Ikke sælgere allerede tilknyttet distrikt" +
-                                    "\n\n Gør sælger til ansvarlig (Manager) -> Erstatter nuværende ansvarlige";
-            MessageBox.Show(addSalesman, "Tilgøj sælger", MessageBoxButton.YesNo);
+            try
+            {
+                AddOrRemoveSalesman newWindow = new AddOrRemoveSalesman(DistrictNr);
+                newWindow.Show();
+            }
+            catch (Exception exc)
+            {
+                LogEvent(exc.StackTrace, 3);
+            }
         }
 
         private void RemoveSalesman_Click(object sender, RoutedEventArgs e)
         {
-            string removeSalesman = "Fjern sælger: Dropdownliste med alle tilgængelige sælgere" +
+            string removeSalesman = "Fjern sælger: Dropdownliste med alle sælgere i distrikt" +
                                     "\n - Ikke ansvarlige (Manager) fra distrikt" +
                                     "\n - Kun sælgere tilknyttet distrikt";
             MessageBox.Show(removeSalesman, "Fjern sælger", MessageBoxButton.OK);
@@ -84,19 +78,32 @@ namespace Business_Manager_UI
 
         private void dataGrid_Districts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            List<object> empty = new List<object>();
+            AddSalesman.IsEnabled = true;
+            RemoveSalesman.IsEnabled = true;
+
             try
             {
                 District selectedDistrict = (District)dataGrid_Districts.SelectedItem;
-                string districtNr = selectedDistrict.Nr;
 
-                District d = districts.First(x => x.Nr == districtNr);
+                if(selectedDistrict != null)
+                {
+                    DistrictNr = selectedDistrict.Nr;
 
-                dataGrid_DistrictStores.ItemsSource = d.Stores;
-                dataGrid_DistrictSalesmen.ItemsSource = d.Salesmen;
+                    District d = districts.First(x => x.Nr == DistrictNr);
+
+                    dataGrid_DistrictStores.ItemsSource = d.Stores;
+                    dataGrid_DistrictSalesmen.ItemsSource = d.Salesmen;
+                }
+                else
+                {
+                    dataGrid_DistrictStores.ItemsSource = empty;
+                    dataGrid_DistrictSalesmen.ItemsSource = empty;
+                }
             }
             catch (Exception exc)
             {
-                LogEvent(exc.Message, 3);
+                LogEvent(exc.StackTrace, 3);
             }
         }
 
@@ -148,6 +155,8 @@ namespace Business_Manager_UI
             {
                 file.WriteLine(logMessage);
             }
+
+            MessageBox.Show(logMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

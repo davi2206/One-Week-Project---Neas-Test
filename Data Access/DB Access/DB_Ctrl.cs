@@ -1,4 +1,4 @@
-﻿using Data_Access.Models;
+﻿using Data_Access_Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +43,23 @@ namespace Data_Access.DB_Access
             {
                 throw e;
             }
+        }
+
+        public List<Salesman> GetAvailableSalesmen(string excludeDistrict)
+        {
+            try
+            {
+                return db_con.GetAvailableSalesmen(excludeDistrict);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool UpdateDistrict(string districtNr, string salesmanId, bool manager)
+        {
+            return db_con.UpdateDistrict(districtNr, salesmanId, manager);
         }
     }
 }

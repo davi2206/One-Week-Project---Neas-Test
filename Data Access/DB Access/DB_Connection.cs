@@ -1,5 +1,4 @@
-﻿using Data_Access.Models;
-using Data_Access_Server.Models;
+﻿using Data_Access_Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -281,6 +280,109 @@ namespace Data_Access.DB_Access
             }
 
             return store;
+        }
+
+        /// <summary>
+        /// Get all available salesmen for the district
+        /// </summary>
+        /// <param name="excludeDistrict">Number of the curent district, to exclude salesmen allready connected</param>
+        /// <returns>List of Salesman objects</returns>
+        public List<Salesman> GetAvailableSalesmen(string excludeDistrict)
+        {
+            List<Salesman> stores = new List<Salesman>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection())
+                {
+                    con.ConnectionString = ConnectionString;
+                    con.Open();
+
+                    command = string.Format(@"SELECT Salesmen.Id, Salesmen.Name 
+                                                FROM Salesmen 
+                                                INNER JOIN DistrictSalesman 
+                                                ON Salesmen.Id=Salesman_Id 
+                                                AND District_Id!='{0}' 
+                                                AND Manager='0';", excludeDistrict);
+                    sqlCommand = new SqlCommand(command, con);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string id = (string)reader[0];
+                            string name = (string)reader[1];
+
+                            Salesman s = new Salesman(id, name);
+
+                            stores.Add(s);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return stores;
+        }
+
+        public bool UpdateDistrict(string districtNr, string salesmanId, bool manager)
+        {
+            bool worked = false;
+            
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                SqlCommand command;
+                SqlTransaction transaction;
+
+
+                try
+                {
+                    con.Open();
+                    command = con.CreateCommand();
+                    transaction = con.BeginTransaction("");
+
+                    command.Connection = con;
+                    command.Transaction = transaction;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+                try
+                {
+                    command.CommandText = string.Format(@"INSERT INTO DistrictSalesman 
+                                                        VALUES({0}, {1}, {2});", 
+                                                        salesmanId, districtNr, manager);
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    command.CommandText = string.Format(@"UPDATE Districts 
+                                                        SET Manager={0}
+                                                        WHERE Nr={1}; ", 
+                                                        salesmanId, districtNr);
+                    rowsAffected = command.ExecuteNonQuery();
+
+                    transaction.Commit();
+                    worked = true;
+                }
+                catch
+                {
+                    worked = false;
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch (Exception ex_rollback)
+                    {
+                        throw ex_rollback;
+                    }
+                }
+            }
+            
+            return worked;
         }
     }
 }

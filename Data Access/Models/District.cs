@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data_Access.Models
+namespace Data_Access_Server.Models
 {
     [DataContract]
     public class District

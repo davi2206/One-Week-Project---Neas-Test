@@ -5,9 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Data_Access_Server;
-using Data_Access.Models;
 using Data_Access.DB_Access;
 using System.Windows;
+using Data_Access_Server.Models;
 
 namespace REST.Controllers
 {
@@ -28,16 +28,36 @@ namespace REST.Controllers
             }
         }
 
-        public District Get(string nr)
+        public HttpResponseMessage Get(string nr)
         {
+            HttpResponseMessage response;
             try
             {
-                return db_Ctrl.GetDistrict(nr);
+                District district = db_Ctrl.GetDistrict(nr);
+                response = Request.CreateResponse(HttpStatusCode.Found, district);
+                return response;
             }
             catch (Exception exc)
             {
                 LogEvent(exc.Message, 3);
-                return null;
+                response = Request.CreateErrorResponse(HttpStatusCode.NotFound, exc);
+                return response;
+            }
+        }
+
+        public HttpResponseMessage Post(string districtNr, string salesmanId, bool manager)
+        {
+            try
+            {
+                db_Ctrl.UpdateDistrict(districtNr, salesmanId, manager);
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                LogEvent(ex.Message, 3);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 

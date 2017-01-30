@@ -5,14 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Business_Manager_UI"
         mc:Ignorable="d"
-        Title="Add or Remove Salesman" Height="300" Width="350" Loaded="Window_Loaded">
+        Title="Add or Remove Salesman" Height="150" Width="250" Loaded="Window_Loaded">
     <Grid>
-        <StackPanel x:Name="Menubar" Orientation="Horizontal" Height="35" VerticalAlignment="Top" Margin="5">
-            <ComboBox x:Name="Salesmen" Text="Tilgængelige sælgere" Width="300">
-                <ComboBoxItem Name="cbi1">Item1</ComboBoxItem>
-                <ComboBoxItem Name="cbi2">Item2</ComboBoxItem>
-                <ComboBoxItem Name="cbi3">Item3</ComboBoxItem>
-            </ComboBox>
+        <StackPanel x:Name="Menubar" Orientation="Vertical" MinHeight="35" VerticalAlignment="Top" Margin="5">
+            <ComboBox x:Name="Salesmen" Text="Tilgængelige sælgere" 
+                      Width="200" Height="25" 
+                      IsEditable="True" IsReadOnly="True" 
+                      DisplayMemberPath="Name" 
+                      Margin="5" SelectionChanged="Salesmen_SelectionChanged"/>
+            <CheckBox x:Name="Manager" Margin="5"
+                      Width="200">Gør sælger ansvarlig</CheckBox>
+            <Button x:Name="SaveSalesman" Width="200" Margin="5" IsEnabled="False" Click="SaveSalesman_Click">Gem sælger</Button>
         </StackPanel>
     </Grid>
 </Window>

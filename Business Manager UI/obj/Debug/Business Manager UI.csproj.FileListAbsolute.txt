@@ -19,7 +19,6 @@ C:\Users\David\documents\visual studio 2015\Projects\Neas Prøve\Business Manage
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\bin\Debug\Business Manager UI.exe.config
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\Business Manager UI.exe
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\Business Manager UI.pdb
-C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\Business Manager UI.csprojResolveAssemblyReference.cache
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\MainWindow.g.cs
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\App.g.cs
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\Business Manager UI_MarkupCompile.cache
@@ -36,3 +35,4 @@ C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\Business Manager UI.csproj.GenerateResource.Cache
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\AddOrRemoveSalesman.g.cs
 C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\AddOrRemoveSalesman.baml
+C:\Users\David\Documents\Github\One-Week-Project---Neas-Test\Business Manager UI\obj\Debug\Business Manager UI.csprojResolveAssemblyReference.cache
