@@ -59,7 +59,8 @@ namespace Business_Manager_UI
         {
             try
             {
-                AddOrRemoveSalesman newWindow = new AddOrRemoveSalesman(DistrictNr);
+                List<Salesman> list = new List<Salesman>();
+                AddOrRemoveSalesman newWindow = new AddOrRemoveSalesman(DistrictNr, list);
                 newWindow.Show();
             }
             catch (Exception exc)

@@ -337,12 +337,11 @@ namespace Data_Access.DB_Access
                 SqlCommand command;
                 SqlTransaction transaction;
 
-
                 try
                 {
                     con.Open();
                     command = con.CreateCommand();
-                    transaction = con.BeginTransaction("");
+                    transaction = con.BeginTransaction("Transaction Update");
 
                     command.Connection = con;
                     command.Transaction = transaction;
@@ -355,13 +354,13 @@ namespace Data_Access.DB_Access
                 try
                 {
                     command.CommandText = string.Format(@"INSERT INTO DistrictSalesman 
-                                                        VALUES({0}, {1}, {2});", 
+                                                        VALUES('{0}', '{1}', '{2}');", 
                                                         salesmanId, districtNr, manager);
                     int rowsAffected = command.ExecuteNonQuery();
 
                     command.CommandText = string.Format(@"UPDATE Districts 
-                                                        SET Manager={0}
-                                                        WHERE Nr={1}; ", 
+                                                        SET Manager='{0}'
+                                                        WHERE Nr='{1}'; ", 
                                                         salesmanId, districtNr);
                     rowsAffected = command.ExecuteNonQuery();
 

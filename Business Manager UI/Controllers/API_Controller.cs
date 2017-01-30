@@ -124,7 +124,7 @@ namespace Business_Manager_UI.Controllers
         //Unfinished. Does not work!
         private HttpResponseMessage SendHttpPost(string parameter, JObject data)
         {
-            throw new NotImplementedException("Check comment above");
+            //throw new NotImplementedException("Check comment above");
             try
             {
                 using (HttpClient client = new HttpClient())

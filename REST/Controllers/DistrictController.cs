@@ -109,6 +109,8 @@ namespace REST.Controllers
             {
                 file.WriteLine(logMessage);
             }
+
+            MessageBox.Show(logMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

@@ -59,7 +59,14 @@ namespace Data_Access.DB_Access
 
         public bool UpdateDistrict(string districtNr, string salesmanId, bool manager)
         {
-            return db_con.UpdateDistrict(districtNr, salesmanId, manager);
+            try
+            {
+                return db_con.UpdateDistrict(districtNr, salesmanId, manager);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

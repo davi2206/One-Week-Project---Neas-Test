@@ -23,18 +23,20 @@ namespace Business_Manager_UI
     {
         Controller ctrl = new Controller();
 
-        public AddOrRemoveSalesman(string excludeDistrict)
+        public AddOrRemoveSalesman(string excludeDistrict, List<Salesman> availableSalesmen)
         {
             InitializeComponent();
             ExcludeDistrict = excludeDistrict;
+            availableSalesmen = ctrl.GetAvailableSalesmen(ExcludeDistrict);
+            Salesmen.ItemsSource = availableSalesmen;
         }
 
         public string ExcludeDistrict { get; set; }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Salesman> availableSalesmen = ctrl.GetAvailableSalesmen(ExcludeDistrict);
-            Salesmen.ItemsSource = availableSalesmen;
+            //List<Salesman> availableSalesmen = ctrl.GetAvailableSalesmen(ExcludeDistrict);
+            //Salesmen.ItemsSource = availableSalesmen;
         }
 
         private void Salesmen_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,6 +54,8 @@ namespace Business_Manager_UI
             bool? manager = Manager.IsChecked;
 
             ctrl.UpdateDistrict(districtNr, salesmanId, manager);
+
+            this.Close();
         }
     }
 }

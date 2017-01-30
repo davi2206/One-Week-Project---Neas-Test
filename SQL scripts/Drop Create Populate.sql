@@ -1,5 +1,43 @@
 use [Neas Project];
 
+DROP TABLE DistrictStore;
+DROP TABLE Stores;
+DROP TABLE DistrictSalesman;
+DROP TABLE Districts;
+DROP TABLE Salesmen;
+
+CREATE TABLE Salesmen
+(
+Id varchar(16) PRIMARY KEY,
+Name varchar(256)
+);
+
+CREATE TABLE Districts
+(
+Nr varchar(16) PRIMARY KEY,
+Name varchar(256),
+Manager varchar(16) FOREIGN KEY REFERENCES Salesmen(Id) NOT NULL
+);
+
+CREATE TABLE DistrictSalesman
+(
+Salesman_Id varchar(16) FOREIGN KEY REFERENCES Salesmen(Id) NOT NULL,
+District_Id varchar(16) FOREIGN KEY REFERENCES Districts(Nr) NOT NULL,
+Manager bit NOT NULL
+);
+
+CREATE TABLE Stores
+(
+Id varchar(16) PRIMARY KEY,
+Name varchar(256)
+);
+
+CREATE TABLE DistrictStore
+(
+Store_Id varchar(16) FOREIGN KEY REFERENCES Stores(Id) NOT NULL,
+District_Nr varchar(16) FOREIGN KEY REFERENCES Districts(Nr) NOT NULL
+);
+
 INSERT INTO Salesmen VALUES ('0', 'Dave');
 INSERT INTO Salesmen VALUES ('1', 'Mark');
 INSERT INTO Salesmen VALUES ('2', 'Hanz');
